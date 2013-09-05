@@ -16,15 +16,20 @@ $(document).ready(function(){
 
 	$('.rightbtn').click( function(){
 		moveLeft();
+		hideBtns();
 	});
 
-	$('.gallery-wrapper').click( function(){
+	$('.gallery-mask').click( function(){
 		moveLeft();
+		hideBtns();
 	});
 
 	$('.leftbtn').click( function(){
 		moveRight();
+		hideBtns();
 	});
+
+	hideBtns();
 });
 
 function moveLeft() {
@@ -38,5 +43,20 @@ function moveRight() {
 	if( currentImage > 1) {
 		$('.gallery-ul').animate( {'marginLeft': '+=480px'}, 1000, 'swing')
 		currentImage--;
+	}
+}
+
+function hideBtns() {
+	if( currentImage == 1) {
+		$('.leftbtn').hide();
+	}
+	else {
+		$('.leftbtn').show();
+	}
+	if( currentImage == numImages) {
+		$('.rightbtn').hide();
+	}
+	else {
+		$('.rightbtn').show();
 	}
 }
