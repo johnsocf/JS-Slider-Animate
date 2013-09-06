@@ -1,7 +1,9 @@
+	var numImages = 0,
+	currentImage = 1,
+	totalWidth = 0;
 
-	var numImages = 0;
-	var currentImage = 1;
-	var totalWidth = 0;
+	var $first = $('.gallery-li:first').clone();
+	var $last = $('.gallery-li:last').clone();
 
 $(document).ready(function(){
 
@@ -11,26 +13,40 @@ $(document).ready(function(){
 		console.log(numImages);
 	});
 
+	$first.appendTo('.gallery-ul');
+	$last.prependTo('.gallery-ul');
+	// lastChild.appendTo('gallery-ul');
+
 	$('.gallery-ul').css('width', totalWidth +'px');
 
 
 	$('.rightbtn').click( function(){
 		moveLeft();
-		hideBtns();
+		// hideBtns();
 	});
 
 	$('.gallery-mask').click( function(){
 		moveLeft();
-		hideBtns();
+		// hideBtns();
 	});
 
 	$('.leftbtn').click( function(){
 		moveRight();
-		hideBtns();
+		// hideBtns();
 	});
 
-	hideBtns();
+	// $(.gallery-li):first.before(last.clone(true)); 
+ //  	last.after(first.clone(true)); 
+
+	// hideBtns();
 });
+
+function galleryStart() {
+	$('.gallery-ul').animate( {'marginLeft': '-=480px'}, 1, 'swing')
+	currentImage++;
+}
+
+galleryStart();
 
 function moveLeft() {
 	if( currentImage < numImages) {
@@ -47,6 +63,15 @@ function moveRight() {
 }
 
 function hideBtns() {
+	// $('.gallery-mask','.leftbtn','.rightbtn').hover(
+	// 	function() {
+	// 	$('.leftbtn').css({'opacity': 1});
+	// 	$('.rightbtn').css({'opacity': 1});
+	// },
+	// 	function(){
+	// 	$('.leftbtn').css({'opacity': 0});
+	// 	$('.rightbtn').css({'opacity': 0});
+	// });
 	if( currentImage == 1) {
 		$('.leftbtn').hide();
 	}
