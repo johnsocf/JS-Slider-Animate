@@ -69,6 +69,7 @@ function moveLeft() {
 		currentImage++;
 	}
 	else {
+		// $('.gallery-ul').animate( {'marginLeft': '+=700px'}, 1000, 'swing')
 		$('.gallery-ul').css("left", startPos);
 		console.log("end position " + position);
 	}
