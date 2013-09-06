@@ -4,10 +4,23 @@
 
 	var $first = $('.gallery-li:first').clone(),
 	$last = $('.gallery-li:last').clone(),
-	item_width = $('#gallery-li').outerWidth(),
-	left_value = item_width * (-1);
+	windowWidth = $(window).width(),
+	startPos = -((totalWidth * 2) - (windowWidth/2) + 240),
+	position = 0;
+
+	
+	
+	
 
 $(document).ready(function(){
+
+	function getPosition() {
+		for (var i=0; i < numImages; i++) {
+		var position = -((totalWidth * 2) - (windowWidth/2) + 240*i);
+		console.log("position : " + position);
+		}
+	}
+	getPosition();
 
 	$first.appendTo('.gallery-ul');
 	$last.prependTo('.gallery-ul');
@@ -37,10 +50,6 @@ $(document).ready(function(){
 		moveRight();
 		// hideBtns();
 	});
-
-	// $(.gallery-li):first.before(last.clone(true)); 
- //  	last.after(first.clone(true)); 
-
 	// hideBtns();
 });
 
@@ -60,7 +69,8 @@ function moveLeft() {
 		currentImage++;
 	}
 	else {
-		console.log("switch slider position to start, here, quickly w. css ideally");
+		$('.gallery-ul').css("left", startPos);
+		console.log("end position " + position);
 	}
 }
 
@@ -69,26 +79,18 @@ function moveRight() {
 		$('.gallery-ul').animate( {'marginLeft': '+=480px'}, 1000, 'swing')
 		currentImage--;
 		console.log("here");
+		var position = $('gallery-ul').position();
+		console.log(position);
 		// console.log(position);
 		// set the position to a global variable.  then set the position with css in the 'else' statement.
 	}
 	else {
-		var animation = ("-=" + (numImages * 480) + "px");
-		$('gallery-ul').animate( {'marginLeft': animation}, 1000, 'swing');
-		console.log("switch slider position to end, here, quickly, w. css ideally");
+		$('.gallery-ul').css("left", startPos);
+		console.log("start position " + startPos);
 	}
 }
 
 function hideBtns() {
-	// $('.gallery-mask','.leftbtn','.rightbtn').hover(
-	// 	function() {
-	// 	$('.leftbtn').css({'opacity': 1});
-	// 	$('.rightbtn').css({'opacity': 1});
-	// },
-	// 	function(){
-	// 	$('.leftbtn').css({'opacity': 0});
-	// 	$('.rightbtn').css({'opacity': 0});
-	// });
 	if( currentImage == 1) {
 		$('.leftbtn').hide();
 	}
