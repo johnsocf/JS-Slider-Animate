@@ -2,10 +2,15 @@
 	currentImage = 1,
 	totalWidth = 0;
 
-	var $first = $('.gallery-li:first').clone();
-	var $last = $('.gallery-li:last').clone();
+	var $first = $('.gallery-li:first').clone(),
+	$last = $('.gallery-li:last').clone(),
+	item_width = $('#gallery-li').outerWidth(),
+	left_value = item_width * (-1);
 
 $(document).ready(function(){
+
+	$first.appendTo('.gallery-ul');
+	$last.prependTo('.gallery-ul');
 
 	$('.gallery-li').each( function(){
 		numImages++
@@ -13,9 +18,7 @@ $(document).ready(function(){
 		console.log(numImages);
 	});
 
-	$first.appendTo('.gallery-ul');
-	$last.prependTo('.gallery-ul');
-	// lastChild.appendTo('gallery-ul');
+	
 
 	$('.gallery-ul').css('width', totalWidth +'px');
 
@@ -49,16 +52,24 @@ function galleryStart() {
 galleryStart();
 
 function moveLeft() {
-	if( currentImage < numImages) {
+
+	if (currentImage < numImages) {
 		$('.gallery-ul').animate( {'marginLeft': '-=480px'}, 1000, 'swing')
 		currentImage++;
+	}
+	else if (currentImage < (numImages - 1)) {
+		$('.gallery-ul').css({'left' : left_value});
 	}
 }
 
 function moveRight() {
-	if( currentImage > 1) {
+	if (currentImage > 1) {
 		$('.gallery-ul').animate( {'marginLeft': '+=480px'}, 1000, 'swing')
 		currentImage--;
+	}
+	else if (currentImage == numImages) {
+		$('.gallery-ul').css({'left' : left_value});
+		console.log("here");
 	}
 }
 
