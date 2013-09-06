@@ -52,13 +52,15 @@ function galleryStart() {
 galleryStart();
 
 function moveLeft() {
+	var item_width = $('.gallery-li').outerWidth(); 
+    var left_value = item_width * (-1); 
 
 	if (currentImage < numImages) {
 		$('.gallery-ul').animate( {'marginLeft': '-=480px'}, 1000, 'swing')
 		currentImage++;
 	}
-	else if (currentImage < (numImages - 1)) {
-		$('.gallery-ul').css({'left' : left_value});
+	else {
+		console.log("switch slider position to start, here");
 	}
 }
 
@@ -66,10 +68,10 @@ function moveRight() {
 	if (currentImage > 1) {
 		$('.gallery-ul').animate( {'marginLeft': '+=480px'}, 1000, 'swing')
 		currentImage--;
-	}
-	else if (currentImage == numImages) {
-		$('.gallery-ul').css({'left' : left_value});
 		console.log("here");
+	}
+	else {
+		console.log("switch slider position to end, here");
 	}
 }
 
