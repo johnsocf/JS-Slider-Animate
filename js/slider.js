@@ -60,7 +60,7 @@ function moveLeft() {
 		currentImage++;
 	}
 	else {
-		console.log("switch slider position to start, here");
+		console.log("switch slider position to start, here, quickly w. css ideally");
 	}
 }
 
@@ -69,9 +69,13 @@ function moveRight() {
 		$('.gallery-ul').animate( {'marginLeft': '+=480px'}, 1000, 'swing')
 		currentImage--;
 		console.log("here");
+		// console.log(position);
+		// set the position to a global variable.  then set the position with css in the 'else' statement.
 	}
 	else {
-		console.log("switch slider position to end, here");
+		var animation = ("-=" + (numImages * 480) + "px");
+		$('gallery-ul').animate( {'marginLeft': animation}, 1000, 'swing');
+		console.log("switch slider position to end, here, quickly, w. css ideally");
 	}
 }
 
